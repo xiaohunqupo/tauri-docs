@@ -8,15 +8,9 @@ import Icon from '@theme/Icon'
 
 <Intro />
 
-## 1. System Dependencies&nbsp;<Icon type="danger"/>
+## 1. System Dependencies&nbsp;<Icon title="alert" color="danger"/>
 
-You will need to have <a href="https://brew.sh/" target="_blank">Homebrew</a> installed to run the following command.
-
-```sh
-$ brew install gcc
-```
-
-You will also need to make sure `xcode` is installed.
+Make sure `xcode` is installed.
 
 ```sh
 $ xcode-select --install

@@ -4,15 +4,19 @@
 
 [fs](../modules/fs.md).FsBinaryFileOption
 
+Options object used to write a binary data to a file.
+
 ## Properties
 
 ### contents
 
-• **contents**: `ArrayBuffer`
+• **contents**: `Iterable`<`number`\> \| `ArrayLike`<`number`\>
+
+The byte array contents.
 
 #### Defined in
 
-[fs.ts:76](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L76)
+[fs.ts:117](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L117)
 
 ___
 
@@ -20,6 +24,8 @@ ___
 
 • **path**: `string`
 
+Path to the file to write.
+
 #### Defined in
 
-[fs.ts:75](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L75)
+[fs.ts:115](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L115)

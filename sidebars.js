@@ -25,6 +25,7 @@ const docs = [
       'getting-started/beginning-tutorial',
     ],
     Development: [
+      'development/security',
       'development/development-cycle',
       'development/updating-dependencies',
     ],
@@ -33,14 +34,20 @@ const docs = [
       'architecture/frontend-frameworks',
       {
         Patterns: [
-          'architecture/patterns/about-patterns',
-          'architecture/patterns/hermit',
-          'architecture/patterns/bridge',
-          'architecture/patterns/cloudish',
-          'architecture/patterns/cloudbridge',
-          'architecture/patterns/lockdown',
-          'architecture/patterns/multiwin',
-          'architecture/patterns/glui',
+          'architecture/patterns/brownfield',
+          'architecture/patterns/isolation',
+        ],
+      },
+      {
+        Recipes: [
+          'architecture/recipes/about-recipes',
+          'architecture/recipes/hermit',
+          'architecture/recipes/bridge',
+          'architecture/recipes/cloudish',
+          'architecture/recipes/cloudbridge',
+          'architecture/recipes/lockdown',
+          'architecture/recipes/multiwin',
+          'architecture/recipes/glui',
         ],
       },
     ],
@@ -74,14 +81,16 @@ const docs = [
     Building: [
       'building/introduction',
       'building/cross-platform',
-      'building/anti-bloat',
+      'building/app-size',
       'building/sidecar',
       'building/debian',
     ],
     Distribution: [
       'distribution/publishing',
-      'distribution/updater',
+      'distribution/linux',
+      'distribution/macos',
       'distribution/sign-macos',
+      'distribution/updater',
       'distribution/sign-windows',
     ],
   },
@@ -94,7 +103,7 @@ const api = [
   {
     type: 'link',
     label: 'Rust (via Docs.rs)',
-    href: 'https://docs.rs/tauri/1.0.0-beta.8/',
+    href: 'https://docs.rs/tauri/1.0.0-rc.0/',
   },
   {
     type: 'category',

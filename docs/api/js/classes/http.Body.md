@@ -14,7 +14,7 @@ The body object to be used on POST and PUT requests.
 
 #### Defined in
 
-[http.ts:45](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L45)
+[http.ts:64](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L64)
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 #### Defined in
 
-[http.ts:44](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L44)
+[http.ts:63](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L63)
 
 ## Methods
 
@@ -38,7 +38,7 @@ Creates a new byte array body.
 
 | Name | Type |
 | :------ | :------ |
-| `bytes` | `number`[] |
+| `bytes` | `Uint8Array` |
 
 #### Returns
 
@@ -48,7 +48,7 @@ The body object ready to be used on the POST and PUT requests.
 
 #### Defined in
 
-[http.ts:93](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L93)
+[http.ts:119](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L119)
 
 ___
 
@@ -72,7 +72,7 @@ The body object ready to be used on the POST and PUT requests.
 
 #### Defined in
 
-[http.ts:60](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L60)
+[http.ts:79](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L79)
 
 ___
 
@@ -96,7 +96,7 @@ The body object ready to be used on the POST and PUT requests.
 
 #### Defined in
 
-[http.ts:71](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L71)
+[http.ts:97](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L97)
 
 ___
 
@@ -120,4 +120,4 @@ The body object ready to be used on the POST and PUT requests.
 
 #### Defined in
 
-[http.ts:82](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/http.ts#L82)
+[http.ts:108](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/http.ts#L108)

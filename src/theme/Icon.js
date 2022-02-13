@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 const legend = {
   danger: {
@@ -17,7 +17,7 @@ const legend = {
   default: {
     color: 'var(--ifm-font-base-color)',
     icon: 'info-circle-fill',
-  }
+  },
 }
 
 export default ({ type = 'default' }) => (

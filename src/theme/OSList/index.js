@@ -1,11 +1,11 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 import React from 'react'
 import styles from './oslist.module.css'
 import Link from '@docusaurus/Link'
 
 export default ({ content }) => {
   return (
-    <div className={classnames(styles.osList, 'container')}>
+    <div className={classNames(styles.osList, 'container')}>
       <div className="row">
         <Link to={content.linux.link} className={classnames('col')}>
           <div className="card">

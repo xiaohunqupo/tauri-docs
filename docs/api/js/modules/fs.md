@@ -1,6 +1,6 @@
 [@tauri-apps/api](../index.md) / fs
 
-# Module: fs
+# Namespace: fs
 
 Access the file system.
 
@@ -13,10 +13,8 @@ The APIs must be allowlisted on `tauri.conf.json`:
     "allowlist": {
       "fs": {
         "all": true, // enable all FS APIs
-        "readTextFile": true,
-        "readBinaryFile": true,
+        "readFile": true,
         "writeFile": true,
-        "writeBinaryFile": true,
         "readDir": true,
         "copyFile": true,
         "createDir": true,
@@ -29,6 +27,42 @@ The APIs must be allowlisted on `tauri.conf.json`:
 }
 ```
 It is recommended to allowlist only the APIs you use for optimal bundle size and security.
+
+## Security
+
+This module prevents path traversal, not allowing absolute paths or parent dir components
+(i.e. "/usr/path/to/file" or "../path/to/file" paths are not allowed).
+Paths accessed with this API must be relative to one of the [base directories](../enums/fs.BaseDirectory.md)
+so if you need access to arbitrary filesystem paths, you must write such logic on the core layer instead.
+
+The API has a scope configuration that forces you to restrict the paths that can be accessed using glob patterns.
+
+The scope configuration is an array of glob patterns describing folder paths that are allowed.
+For instance, this scope configuration only allows accessing files on the
+*databases* folder of the [$APP directory](path.md#appdir):
+```json
+{
+  "tauri": {
+    "allowlist": {
+      "fs": {
+        "scope": ["$APP/databases/*"]
+      }
+    }
+  }
+}
+```
+
+Notice the use of the `$APP` variable. The value is injected at runtime, resolving to the [app directory](path.md#appdir).
+The available variables are:
+[`$AUDIO`](path.md#audiodir), [`$CACHE`](path.md#cachedir), [`$CONFIG`](path.md#configdir), [`$DATA`](path.md#datadir),
+[`$LOCALDATA`](path.md#localdatadir), [`$DESKTOP`](path.md#desktopdir), [`$DOCUMENT`](path.md#documentdir),
+[`$DOWNLOAD`](path.md#downloaddir), [`$EXE`](path.md#executabledir), [`$FONT`](path.md#fontdir), [`$HOME`](path.md#homedir),
+[`$PICTURE`](path.md#picturedir), [`$PUBLIC`](path.md#publicdir), [`$RUNTIME`](path.md#runtimedir),
+[`$TEMPLATE`](path.md#templatedir), [`$VIDEO`](path.md#videodir), [`$RESOURCE`](path.md#resourcedir), [`$APP`](path.md#appdir).
+
+Trying to execute any API with a URL not configured on the scope results in a promise rejection due to denied access.
+
+Note that this scope applies to **all** APIs on this module.
 
 ## Enumerations
 
@@ -46,7 +80,7 @@ It is recommended to allowlist only the APIs you use for optimal bundle size and
 
 ### Dir
 
-Renames and exports: [BaseDirectory](../enums/fs.BaseDirectory.md)
+Renames and re-exports [BaseDirectory](../enums/fs.BaseDirectory.md)
 
 ## Functions
 
@@ -72,7 +106,7 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:300](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L300)
+[fs.ts:307](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L307)
 
 ___
 
@@ -99,13 +133,13 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:256](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L256)
+[fs.ts:263](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L263)
 
 ___
 
 ### readBinaryFile
 
-▸ **readBinaryFile**(`filePath`, `options?`): `Promise`<`number`[]\>
+▸ **readBinaryFile**(`filePath`, `options?`): `Promise`<`Uint8Array`\>
 
 Reads a file as byte array.
 
@@ -118,13 +152,13 @@ Reads a file as byte array.
 
 #### Returns
 
-`Promise`<`number`[]\>
+`Promise`<`Uint8Array`\>
 
 A promise resolving to the file bytes array.
 
 #### Defined in
 
-[fs.ts:118](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L118)
+[fs.ts:159](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L159)
 
 ___
 
@@ -149,7 +183,7 @@ A promise resolving to the directory entries.
 
 #### Defined in
 
-[fs.ts:233](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L233)
+[fs.ts:240](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L240)
 
 ___
 
@@ -157,7 +191,7 @@ ___
 
 ▸ **readTextFile**(`filePath`, `options?`): `Promise`<`string`\>
 
-Reads a file as UTF-8 encoded string.
+Reads a file as an UTF-8 encoded string.
 
 #### Parameters
 
@@ -174,7 +208,7 @@ A promise resolving to the file content as a UTF-8 encoded string.
 
 #### Defined in
 
-[fs.ts:97](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L97)
+[fs.ts:138](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L138)
 
 ___
 
@@ -200,7 +234,7 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:278](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L278)
+[fs.ts:285](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L285)
 
 ___
 
@@ -225,7 +259,7 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:323](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L323)
+[fs.ts:330](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L330)
 
 ___
 
@@ -251,7 +285,7 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:345](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L345)
+[fs.ts:352](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L352)
 
 ___
 
@@ -259,7 +293,7 @@ ___
 
 ▸ **writeBinaryFile**(`file`, `options?`): `Promise`<`void`\>
 
-Writes a binary file.
+Writes a byte array content to a file.
 
 #### Parameters
 
@@ -276,7 +310,7 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:204](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L204)
+[fs.ts:211](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L211)
 
 ___
 
@@ -284,7 +318,7 @@ ___
 
 ▸ **writeFile**(`file`, `options?`): `Promise`<`void`\>
 
-Writes a text file.
+Writes a UTF-8 text file.
 
 #### Parameters
 
@@ -301,4 +335,4 @@ A promise indicating the success or failure of the operation.
 
 #### Defined in
 
-[fs.ts:139](https://github.com/tauri-apps/tauri/blob/52723ee8/tooling/api/src/fs.ts#L139)
+[fs.ts:182](https://github.com/tauri-apps/tauri/blob/d24045e/tooling/api/src/fs.ts#L182)

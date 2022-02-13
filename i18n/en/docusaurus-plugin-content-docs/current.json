@@ -27,6 +27,10 @@
     "message": "Patterns",
     "description": "The label for category Patterns in sidebar docs"
   },
+  "sidebar.docs.category.Recipe": {
+    "message": "Recipes",
+    "description": "The label for category Recipes in sidebar docs"
+  },
   "sidebar.docs.category.Bundler": {
     "message": "Bundler",
     "description": "The label for category Bundler in sidebar docs"
@@ -61,6 +65,6 @@
   },
   "sidebar.api.link.Rust (via Docs.rs)": {
     "message": "Rust (via Docs.rs)",
-    "description": "The label for link Rust (via Docs.rs) in sidebar api, linking to https://docs.rs/tauri/1.0.0-beta.8/"
+    "description": "The label for link Rust (via Docs.rs) in sidebar api, linking to https://docs.rs/tauri/1.0.0-rc.0/"
   }
 }

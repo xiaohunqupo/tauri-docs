@@ -103,7 +103,7 @@ invoke('my_custom_command')
 ## Async Commands
 
 :::note
-Async commands are executed on a separate thread using the [async runtime](https://docs.rs/tauri/1.0.0-beta.8/tauri/async_runtime/fn.spawn.html)
+Async commands are executed on a separate thread using the [async runtime](https://docs.rs/tauri/1.0.0-rc.0/tauri/async_runtime/fn.spawn.html)
 Commands without the `async` keyword are executed on the main thread, unless defined with `#[tauri::command(async)]`.
 :::
 
