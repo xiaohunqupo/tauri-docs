@@ -27,11 +27,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
     </table>
   </div>
   <div className="col col--4 pattern-logo">
-<<<<<<< HEAD:docs/architecture/patterns/cloudish.md
-    <img src={useBaseUrl('img/patterns/Cloudish.svg')} alt="Cloudish" />
-=======
     <img src={useBaseUrl('img/recipes/Cloudish.svg')} alt="Cloudish" />
->>>>>>> origin/dev:docs/architecture/recipes/cloudish.md
   </div>
     <div className="col col--4">
     Pros:

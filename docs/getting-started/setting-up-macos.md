@@ -3,6 +3,7 @@ title: Setting Up macOS
 pagination_next: getting-started/beginning-tutorial
 ---
 
+import Alert from '@theme/Alert'
 import { Intro } from '@theme/SetupDocs'
 import Icon from '@theme/Icon'
 
@@ -16,7 +17,7 @@ Make sure `xcode` is installed.
 $ xcode-select --install
 ```
 
-## 2. Node.js Runtime and Package Manager&nbsp;<Icon type="warning"/>
+## 2. Node.js Runtime and Package Manager&nbsp;<Icon title="control-skip-forward" color="warning"/>
 
 ### Node.js (npm included)
 
@@ -26,9 +27,9 @@ We recommend using nvm to manage your Node.js runtime. It allows you to easily s
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 ```
 
-:::note
-We have audited this bash script, and it does what it says it is supposed to do. Nevertheless, before blindly curl-bashing a script, it is always wise to look at it first. Here is the file as a mere [download link](https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh).
-:::
+<Alert title="Note">
+We have audited this bash script, and it does what it says it is supposed to do. Nevertheless, before blindly curl-bashing a script, it is always wise to look at it first. Here is the file as a mere <a href="https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh" target="_blank">download link</a>.
+</Alert>
 
 Once nvm is installed, close and reopen your terminal, then install the latest version of Node.js and npm:
 
@@ -46,7 +47,7 @@ You may want to use an alternative to npm:
 - <a href="https://yarnpkg.com/getting-started" target="_blank">Yarn</a>, is preferred by Tauri's team
 - <a href="https://pnpm.js.org/en/installation" target="_blank">pnpm</a>
 
-## 3. Rustc and Cargo Package Manager&nbsp;<Icon type="warning"/>
+## 3. Rustc and Cargo Package Manager&nbsp;<Icon title="control-skip-forward" color="warning"/>
 
 The following command will install <a href="https://rustup.rs/" target="_blank">rustup</a>, the official installer for <a href="https://www.rust-lang.org/" target="_blank">Rust</a>.
 
@@ -54,9 +55,9 @@ The following command will install <a href="https://rustup.rs/" target="_blank">
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-:::note
-We have audited this bash script, and it does what it says it is supposed to do. Nevertheless, before blindly curl-bashing a script, it is always wise to look at it first. Here is the file as a mere [download link](https://sh.rustup.rs).
-:::
+<Alert title="Note">
+We have audited this bash script, and it does what it says it is supposed to do. Nevertheless, before blindly curl-bashing a script, it is always wise to look at it first. Here is the file as a mere <a href="https://sh.rustup.rs" target="_blank">download link</a>.
+</Alert>
 
 To make sure that Rust has been installed successfully, run the following command:
 

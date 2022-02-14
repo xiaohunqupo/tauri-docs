@@ -1,7 +1,7 @@
 const tauriOrange = "#FFC131"
 const tauriBlue = "#24C8DB"
-const tauriWhite = "#F6F6F6"
-const tauriBlack  = "#0F0F0F"
+const tauriWhite = "F6F6F6"
+const tauriBlack  = "#0F0F0"
 
 module.exports = {
   plain: {

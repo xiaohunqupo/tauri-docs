@@ -7,36 +7,48 @@ export default ({ content }) => {
   return (
     <div className={classNames(styles.osList, 'container')}>
       <div className="row">
-        <Link to={content.linux.link} className={classnames('col')}>
+        <div className={classNames('col')}>
           <div className="card">
             <div className="card__body">
-              <i className={classnames(styles.osIcon, 'bi bi-terminal-fill')} />
+              <Link to={content.linux.link} className={styles.osIconLink}>
+                <i className={classNames(styles.osIcon, 'ti-linux')}></i>
+              </Link>
             </div>
             <div className="card__footer">
-              <h3>{content.linux.title}</h3>
+              <Link to={content.linux.link}>
+                <h3>{content.linux.title}</h3>
+              </Link>
             </div>
           </div>
-        </Link>
-        <Link to={content.macos.link} className={classnames('col')}>
+        </div>
+        <div className={classNames('col')}>
           <div className="card">
             <div className="card__body">
-              <i className={classnames(styles.osIcon, 'bi bi-apple')} />
+              <Link to={content.macos.link} className={styles.osIconLink}>
+                <i className={classNames(styles.osIcon, 'ti-apple')}></i>
+              </Link>
             </div>
             <div className="card__footer">
-              <h3>{content.macos.title}</h3>
+              <Link to={content.macos.link}>
+                <h3>{content.macos.title}</h3>
+              </Link>
             </div>
           </div>
-        </Link>
-        <Link to={content.windows.link} className={classnames('col')}>
+        </div>
+        <div className={classNames('col')}>
           <div className="card">
             <div className="card__body">
-              <i className={classnames(styles.osIcon, 'bi bi-windows')} />
+              <Link to={content.windows.link} className={styles.osIconLink}>
+                <i className={classNames(styles.osIcon, 'ti-microsoft')}></i>
+              </Link>
             </div>
             <div className="card__footer">
-              <h3>{content.windows.title}</h3>
+              <Link to={content.windows.link}>
+                <h3>{content.windows.title}</h3>
+              </Link>
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   )

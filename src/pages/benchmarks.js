@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { reshape, formatMB, formatExecTime } from '../utils/benchmark'
 import Layout from '@theme/Layout'
+import Alert from '@theme/Alert'
+import Icon from '@theme/Icon'
 import useThemeContext from '@theme/hooks/useThemeContext'
 import ContentLoader from 'react-content-loader'
-import Admonition from '@theme/Admonition'
 
 function get_graph_color(label_name) {
   switch (label_name) {
@@ -288,16 +289,16 @@ function Benchmarks() {
           </li>
         </ul>
         <p className="margin-bottom--xl">
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             The CPU intensive benchmark measures how much time it takes to
             calculate all the prime numbers under XXXX without blocking the UI
             and reporting how many have been found so far using web workers.
-          </Admonition>
+          </Alert>
         </p>
         <section>
           <h2 id="execution-time" className="anchorify">
             <a href="#execution-time">
-              <i class="bi bi-stopwatch" /> Execution Time
+              <Icon title="timer" /> Execution Time
             </a>
           </h2>
           <div>
@@ -316,7 +317,7 @@ function Benchmarks() {
               yTickFormat={formatExecTime}
             />
           </div>
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             This shows how much time total it takes intialize the application
             and wait the <code>DOMContentLoaded</code> event. We use{' '}
             <a href="https://github.com/sharkdp/hyperfine" target="_blank">
@@ -324,13 +325,13 @@ function Benchmarks() {
             </a>{' '}
             under the hood and run 3 warm-up sequence then, we run 10 sequences
             to calculate the average execution time.
-          </Admonition>
+          </Alert>
         </section>
 
         <section className="margin-top--xl">
           <h2 href="#binary-size" className="anchorify">
             <a href="#binary-size">
-              <i class="bi bi-box" /> Binary Size
+              <Icon title="package" /> Binary Size
             </a>
           </h2>
           <div>
@@ -349,16 +350,16 @@ function Benchmarks() {
               yTickFormat={formatMB}
             />
           </div>
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             We track the size of various files here. All binaries are compiled
             in <u>release mode</u>.
-          </Admonition>
+          </Alert>
         </section>
 
         <section className="margin-top--xl">
           <h2 id="#memory-usage" className="anchorify">
             <a href="#memory-usage">
-              <i class="bi bi-memory" /> Memory Usage
+              <Icon title="dashboard" /> Memory Usage
             </a>
           </h2>
           <div>
@@ -377,19 +378,19 @@ function Benchmarks() {
               yTickFormat={formatMB}
             />
           </div>
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             We use{' '}
             <a href="https://pypi.org/project/memory-profiler/" target="_blank">
               mprof
             </a>{' '}
             to get the max memory usage during execution. Smaller is better.
-          </Admonition>
+          </Alert>
         </section>
 
         <section className="margin-top--xl">
           <h2 id="#thread-count" className="anchorify">
             <a href="#thread-count">
-              <i class="bi bi-cpu" /> Thread Count
+              <Icon title="pulse" /> Thread Count
             </a>
           </h2>
           <div>
@@ -406,15 +407,15 @@ function Benchmarks() {
               }
             />
           </div>
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             How many threads the application use. Smaller is better.
-          </Admonition>
+          </Alert>
         </section>
 
         <section className="margin-top--xl">
           <h2 id="syscall-count" className="anchorify">
             <a href="#syscall-count">
-              <i class="bi bi-activity" /> Syscall Count
+              <Icon title="pulse" /> Syscall Count
             </a>
           </h2>
           <div>
@@ -431,16 +432,16 @@ function Benchmarks() {
               }
             />
           </div>
-          <Admonition type="note">
+          <Alert title="Note" icon="light-bulb">
             How many total syscalls are performed when executing a given
             application. Smaller is better.
-          </Admonition>
+          </Alert>
         </section>
 
         <section className="margin-top--xl">
           <h2 id="tauri-dependencies" className="anchorify">
             <a href="#tauri-dependencies">
-              <i class="bi bi-boxes" /> Dependencies
+              <Icon title="package" /> Dependencies
             </a>
           </h2>
           <div>

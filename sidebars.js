@@ -36,7 +36,7 @@ const docs = [
         Patterns: [
           'architecture/patterns/brownfield',
           'architecture/patterns/isolation',
-        ],
+        ]
       },
       {
         Recipes: [
