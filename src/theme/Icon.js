@@ -22,7 +22,7 @@ const legend = {
 
 export default ({ type = 'default' }) => (
   <i
-    className={classnames('bi', 'bi-' + legend[type].icon)}
+    className={classNames('bi', 'bi-' + legend[type].icon)}
     style={{ color: legend[type].color }}
   ></i>
 )

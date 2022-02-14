@@ -27,11 +27,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
     </table>
   </div>
   <div className="col col--4 pattern-logo">
-<<<<<<< HEAD:docs/architecture/patterns/cloudish.md
     <img src={useBaseUrl('img/patterns/Cloudish.svg')} alt="Cloudish" />
-=======
-    <img src={useBaseUrl('img/recipes/Cloudish.svg')} alt="Cloudish" />
->>>>>>> origin/dev:docs/architecture/recipes/cloudish.md
   </div>
     <div className="col col--4">
     Pros:
@@ -55,34 +51,12 @@ The Cloudish recipe is a pattern for maximum flexibility and app performance. It
 
 import Mermaid, { colors } from '@theme/Mermaid'
 
-<Mermaid chart={`graph TD
-      H==>F
-      H==>D
-      D-->F
-      F-->D
-      subgraph RUST
-      A==>H
-      end
-      subgraph WEBVIEW
-      F
-      end
-      subgraph SERVER
-      D
-      E-->D
-      end
-      A[Binary]
-      D(( localhost ))
-      E[bundled resources]
-      F[Window]
-      H{Bootstrap}
-      style RUST fill:${colors.orange.light},stroke:${colors.orange.dark},stroke-width:4px
-      style WEBVIEW fill:${colors.blue.light},stroke:${colors.blue.dark},stroke-width:4px
-      style SERVER fill:#49A24A,stroke:#2B6063,stroke-width:4px`} />
-
+<Mermaid chart={`graph TD H==>F H==>D D-->F F-->D subgraph RUST A==>H end subgraph WEBVIEW F end subgraph SERVER D E-->D end A[Binary] D(( localhost )) E[bundled resources] F[Window] H{Bootstrap} style RUST fill:${colors.orange.light},stroke:${colors.orange.dark},stroke-width:4px style WEBVIEW fill:${colors.blue.light},stroke:${colors.blue.dark},stroke-width:4px style SERVER fill:#49A24A,stroke:#2B6063,stroke-width:4px`} />
 
 ## Configuration
 
 Here's what you need to add to your tauri.conf.json file:
+
 ```json
 "tauri": {
   "allowlist": {

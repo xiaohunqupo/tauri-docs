@@ -27,11 +27,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
     </table>
   </div>
   <div className="col col--4 pattern-logo">
-<<<<<<< HEAD:docs/architecture/patterns/hermit.md
     <img src={useBaseUrl('img/patterns/Hermit.svg')} alt="Hermit" />
-=======
-    <img src={useBaseUrl('img/recipes/Hermit.svg')} alt="Hermit" />
->>>>>>> origin/dev:docs/architecture/recipes/hermit.md
   </div>
     <div className="col col--4">
     Pros:
@@ -55,20 +51,7 @@ The Hermit recipe is a pattern for ultimate application isolation where all logi
 
 import Mermaid, { colors } from '@theme/Mermaid'
 
-<Mermaid chart={`graph LR
-      A==>H
-      H==>F
-      subgraph WEBVIEW
-      F
-      end
-      subgraph RUST
-      A
-      end
-      A[fa:fa-cog Binary ]
-      F[fa:fa-window-maximize Window]
-      H{Bootstrap}
-      style RUST fill:${colors.orange.light},stroke:${colors.orange.dark},stroke-width:4px
-      style WEBVIEW fill:${colors.blue.light},stroke:${colors.blue.dark},stroke-width:4px`} />
+<Mermaid chart={`graph LR A==>H H==>F subgraph WEBVIEW F end subgraph RUST A end A[fa:fa-cog Binary ] F[fa:fa-window-maximize Window] H{Bootstrap} style RUST fill:${colors.orange.light},stroke:${colors.orange.dark},stroke-width:4px style WEBVIEW fill:${colors.blue.light},stroke:${colors.blue.dark},stroke-width:4px`} />
 
 ## Configuration
 

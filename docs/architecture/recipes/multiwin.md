@@ -28,11 +28,7 @@ import Rater from '@theme/Rater'
     </table>
   </div>
   <div className="col col--4 pattern-logo">
-<<<<<<< HEAD:docs/architecture/patterns/multiwin.md
     <img src={useBaseUrl('img/patterns/Multiwin.svg')} alt="Multiwin" />
-=======
-    <img src={useBaseUrl('img/recipes/Multiwin.svg')} alt="Multiwin" />
->>>>>>> origin/dev:docs/architecture/recipes/multiwin.md
   </div>
   <div className="col col--4">
     Pros:

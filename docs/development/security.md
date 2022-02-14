@@ -2,24 +2,24 @@
 title: Security
 ---
 
-import Alert from '@theme/Alert'
-
 Whether you like it or not, today's applications live in operating systems that can be -- and regularly are -- compromised by any number of attacks. When your insecure application is a gateway for such lateral movement into the operating system, you are contributing to the tools that professional hackers have at their disposal. Don't be a tool.
 
 This is why we have taken every opportunity to help you secure your application, prevent undesired access to system level interfaces, and manufacture bullet-proof applications. Your users assume you are following best practices. We make that easy, but you should still read up on it below.
 
-## Security Is A Community Responsibility (adapted from [Electron](https://www.electronjs.org/docs/latest/tutorial/security#security-is-everyones-responsibility)) 
+## Security Is A Community Responsibility (adapted from [Electron](https://www.electronjs.org/docs/latest/tutorial/security#security-is-everyones-responsibility))
+
 It is important to remember that the security of your Tauri application is the result of the overall security of Tauri itself, all Rust and NPM dependencies, your code, and the devices that run the final application. The Tauri Team does its best to do its part, the security community does its part, and you too would do well to follow a few important best practices:
 
 - **Keep your application up-to-date with the latest Tauri release.** When releasing your app into the wild, you are also shipping a bundle that has Tauri in it. Vulnerabilities affecting Tauri may impact the security of your application. By updating Tauri to the latest version, you ensure that critical vulnerabilities are already patched and cannot be exploited in your application. Also be sure to keep your compiler (rustc) and transpilers (nodejs) up to date, because there are often security issues that are resolved.
 
 - **Evaluate your dependencies.** While NPM and Crates.io provide many convenient packages, it is your responsibility to choose trustworthy 3rd-party libraries - or rewrite them in Rust. If you do use outdated libraries affected by known vulnerabilities or are unmaintained, your application security and good-night's sleep could be in jeopardy. Use tooling like `npm audit` and `cargo audit` to automate this process and lean on the security community's important work.
- 
+
 - **Adopt more secure coding practices.** The first line of defense for your application is your own code. Although Tauri can protect you from common web vulnerabilities, such as Cross-Site Scripting based Remote Code Execution, improper configurations can have a security impact. Even if this were not the case, it is highly recommended to adopt secure software development best practices and perform security testing. We detail what this means in the next section.
 
-- **Educate your Users.** True security really means that unexpected behaviour cannot happen. So in a sense, being more secure means having the peace of mind in knowing that ONLY those things that you want to happen can happen. In the real world, though, this is a utopian "dream". However, by removing as many vectors as possible and building on a solid foundation, your choice for Tauri is a signal to your users that you really care about them, their safety, and their devices. 
+- **Educate your Users.** True security really means that unexpected behaviour cannot happen. So in a sense, being more secure means having the peace of mind in knowing that ONLY those things that you want to happen can happen. In the real world, though, this is a utopian "dream". However, by removing as many vectors as possible and building on a solid foundation, your choice for Tauri is a signal to your users that you really care about them, their safety, and their devices.
 
 ## Threat Models
+
 Tauri applications are composed of many pieces at different points of the lifecycle. Here we describe classical threats and what you SHOULD do about them.
 
 - **Upstream Threats.** Tauri is a direct dependency of your project, and we maintain strict authorial control of commits, reviews, pull-requests, and releases. We do our best to maintain up-to-date dependencies and take action to either update or fork&fix. Other projects may not be so well maintained, and may not even have ever been audited. Please consider their health when integrating them, because otherwise you may have adopted architectural debt without even knowing it.
@@ -33,6 +33,7 @@ Tauri applications are composed of many pieces at different points of the lifecy
 - **Updater Threats** We have done our best to make shipping hot-updates to the app as straightforward and secure as possible. However, if you lose control of the manifest server, the build server, or the binary hosting service - all bets are off. If you are building your own system, consult a professional OPS architect and build it properly.
 
 ## An unsorted list of big ole DONT'S:
+
 - DON'T accept content over http:// or ws://
 - DON'T ship an app with the development console enabled
 - DON'T forget to [read about XSS](https://owasp.org/www-community/attacks/xss/)
@@ -40,6 +41,7 @@ Tauri applications are composed of many pieces at different points of the lifecy
 - DON'T consume JS from a CDN without using an integrity checksum
 
 ## Security Researchers
+
 Nothing is perfect, attack vectors will be found, and if you have found one - we want to know about it. If you have a discovery, PLEASE DO NOT FILE A PUBLIC ISSUE OR MAKE A PULL REQUEST. Please discretely reach out to a member of the team via Discord or Email for verification, vulnerability acceptance, and remediation timeline. We believe in - and participate in - responsible disclosure. At this time we do not have a bug-bounty programme in place, but are actively considering it.
 
 ## Tauri Features to keep you Safer
@@ -50,17 +52,17 @@ Tauri restricts the [Content Security Policy (CSP)](https://developer.mozilla.or
 
 The CSP protection is only enabled if [`tauri.security.csp`](/docs/api/config/#tauri.security.csp) is set on the Tauri configuration file. You should make it as restricted as possible, only allowing the webview to load assets from hosts you trust and preferably own. At compile time, Tauri appends its nonces and hashes to the relevant CSP attributes automatically, so you only need to worry about what is unique to your application.
 
-<Alert title="Note">
+:::note
 See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src">script-src</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src">style-src</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources">CSP Sources</a> for more information about this protection.
-</Alert>
+:::
 
-<Alert title="Note">
+:::note
 With the CSP protection enabled, using inline `style` attributes it not allowed.
-</Alert>
+:::
 
-<Alert title="Caution">
+:::caution
 Avoid loading remote content such as scripts served over a CDN as they introduce an attack vector, but any untrusted file can introduce new and subtle attack vectors.
-</Alert>
+:::
 
 ### Isolation Pattern
 
@@ -81,12 +83,15 @@ For instance, see the following frontend API usage:
 
 ```typescript
 import { writeFile, Dir } from '@tauri-apps/api/fs'
-await writeFile({
-  path: 'report.txt',
-  contents: 'the file content'
-}, {
-  dir: Dir.App,
-})
+await writeFile(
+  {
+    path: 'report.txt',
+    contents: 'the file content',
+  },
+  {
+    dir: Dir.App,
+  }
+)
 ```
 
 If you do not enable the [isolation pattern](#Isolation-pattern), an attacker with remote code execution can overwrite the contents of `report.txt` since that API is generic and enabled. If you use a dedicated command, this is not an issue:
@@ -143,7 +148,7 @@ The variables are: `$AUDIO`, `$CACHE`, `$CONFIG`, `$DATA`, `$LOCALDATA`, `$DESKT
       "fs": {
         "scope": ["$APP/db/*", "$RESOURCE/check.png"]
       }
-    } 
+    }
   }
 }
 ```
@@ -159,9 +164,9 @@ You can restrict the folders and files that can be accessed when using the `asse
       "path": { "all": true },
       "protocol": {
         "asset": true,
-        "assetScope": ['$APP/assets/*']
+        "assetScope": ["$APP/assets/*"]
       }
-    } 
+    }
   }
 }
 ```
@@ -173,7 +178,9 @@ import { convertFileSrc } from '@tauri-apps/api/tauri'
 const appDirPath = await appDir()
 // this path is allowed - is matches $APP/assets/*
 // you can use this on <video> tags or window.fetch() calls
-const allowedPath = convertFileSrc(await join(appDirPath, 'assets', 'tauri.mp4'))
+const allowedPath = convertFileSrc(
+  await join(appDirPath, 'assets', 'tauri.mp4')
+)
 // this path is not allowed - it does not match $APP/assets/*
 const disallowedPath = convertFileSrc(await join(appDirPath, 'tauri.mp4'))
 ```
@@ -189,7 +196,7 @@ You can restrict the URLs and paths that can be accessed when using the `http` m
       "http": {
         "scope": ["https://api.github.com/repos/tauri-apps/*"]
       }
-    } 
+    }
   }
 }
 ```
@@ -227,7 +234,7 @@ To prevent unrestricted access to process spawning, Tauri offers a configuration
         // `true` is also a valid value, which defines the regex as `https?://`.
         "open": "^https://github.com/tauri-apps/"
       }
-    } 
+    }
   }
 }
 ```
