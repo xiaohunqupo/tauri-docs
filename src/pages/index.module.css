@@ -22,10 +22,22 @@
 
 /* Hero */
 .hero {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: stretch;
   padding: 4rem 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 70% 0 0;
+  background: linear-gradient(transparent, var(--ifm-background-color));
+}
+
+html[data-theme='light'] .hero::after {
+  background: linear-gradient(transparent, var(--ifm-background-surface-color));
 }
 
 @media (max-width: 700px) {
@@ -40,6 +52,7 @@
   align-items: center;
   flex-shrink: 0;
   max-width: min(50rem, 100%);
+  z-index: 1;
 }
 
 .heroBefore,
@@ -235,12 +248,57 @@
 
 /* Sponsors */
 .sponsor {
+  flex: 0 1 20%;
+}
+
+.premium {
   flex: 0 1 25%;
 }
 
+.partner {
+  flex: 0 1 30%;
+}
+
 @media (max-width: 700px) {
-  .sponsor {
+  .sponsor .premium .partner {
     flex: 0 1 100%;
     text-align: center;
+  }
+}
+
+.hero {
+  animation: hero-intro 2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  background: linear-gradient(-90deg, #6d6d6d25 1px, transparent 1px),
+    linear-gradient(#6d6d6d25 1px, transparent 1px),
+    linear-gradient(-90deg, #6d6d6d25 1px, transparent 1px),
+    linear-gradient(#6d6d6d25 1px, transparent 1px),
+    linear-gradient(
+      transparent 6px,
+      transparent 6px,
+      transparent 156px,
+      transparent 156px
+    ),
+    linear-gradient(-90deg, #6d6d6d25 1px, transparent 1px),
+    linear-gradient(
+      -90deg,
+      transparent 6px,
+      transparent 6px,
+      transparent 156px,
+      transparent 156px
+    ),
+    linear-gradient(#6d6d6d25 1px, transparent 1px), transparent;
+  background-size: 32px 32px, 32px 32px, 256px 256px, 256px 256px, 256px 256px,
+    256px 256px, 256px 256px, 256px 256px;
+}
+
+@keyframes hero-intro {
+  0% {
+    background-position: 0px 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
   }
 }

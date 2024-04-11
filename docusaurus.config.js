@@ -14,11 +14,6 @@ try {
   console.error()
 }
 
-var baseUrl =
-  process.env.LOCALE === 'en' || process.env.LOCALE == undefined
-    ? '/'
-    : `/${process.env.LOCALE}/`
-
 const repoUrl = 'https://github.com/tauri-apps/tauri'
 const discordUrl = 'https://discord.com/invite/tauri'
 const awesomeTauriUrl = 'https://github.com/tauri-apps/awesome-tauri'
@@ -62,7 +57,7 @@ const navbarItems = [
 
   {
     label: 'Blog',
-    to: 'blog',
+    href: 'https://beta.tauri.app/blog',
     position: 'left',
   },
   {
@@ -109,7 +104,7 @@ const navbarItems = [
         to: 'about/trademark',
       },
       {
-        label: 'Get the Book',
+        label: 'Tauri Book',
         to: 'about/book',
       },
     ],
@@ -120,7 +115,6 @@ const navbarItems = [
     position: 'right',
   },
   {
-    label: 'GitHub',
     href: repoUrl,
     'aria-label': 'GitHub',
     position: 'right',
@@ -130,31 +124,15 @@ const navbarItems = [
   {
     type: 'localeDropdown',
     position: 'right',
-    dropdownItemsAfter: [
-      {
-        to: 'https://tauri.crowdin.com/documentation',
-        label: 'Help us translate',
-      },
-    ],
   },
   {
     type: 'docsVersionDropdown',
     position: 'right',
     className: 'navbarIcon versionIcon',
-    dropdownItemsBefore: [
-      {
-        type: 'html',
-        value: '<b>Stable</b>',
-      },
-    ],
     dropdownItemsAfter: [
       {
-        type: 'html',
-        value: '<b>Alpha</b>',
-      },
-      {
-        href: 'https://next--tauri.netlify.app/',
-        label: 'v2',
+        href: 'https://beta.tauri.app/',
+        label: 'v2 (Beta)',
         target: '_self',
       },
     ],
@@ -209,7 +187,7 @@ const footerLinks = [
     items: [
       {
         label: 'Blog',
-        to: 'blog',
+        href: 'https://beta.tauri.app/blog',
       },
       {
         label: 'OpenCollective',
@@ -252,7 +230,7 @@ async function siteConfig() {
       'Build smaller, faster, and more secure desktop applications with a web frontend',
     organizationName: 'Tauri Apps',
     projectName: 'tauri',
-    baseUrl: baseUrl,
+    baseUrl: '/',
     favicon: '/meta/favicon-32x32.png',
     url: 'https://tauri.app',
     i18n: {
@@ -270,12 +248,12 @@ async function siteConfig() {
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
-      // announcementBar: {
-      //   content:
-      //     "<b>Give your feedback in the <a id='announcement-link' href='https://tripetto.app/run/7NCT3QTC00'>Tauri 2022 Community Survey</a>!</b>",
-      //   backgroundColor: 'var(--ifm-color-primary)',
-      //   textColor: 'var(--ifm-button-color)',
-      // },
+      announcementBar: {
+        content:
+          "<b>🚀 The <a id='announcement-link' href='https://beta.tauri.app/blog/tauri-2-0-0-beta/'>Beta for Tauri 2.0</a> has launched!</b>",
+        backgroundColor: 'var(--ifm-color-primary)',
+        textColor: 'var(--ifm-button-color)',
+      },
       navbar: {
         hideOnScroll: false,
         logo: {
@@ -356,14 +334,6 @@ async function siteConfig() {
 
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
-          },
-
-          blog: {
-            blogSidebarCount: 0,
-            feedOptions: {
-              type: 'all',
-              copyright: `Copyright © ${new Date().getFullYear()} Tauri Programme within The Commons Conservancy`,
-            },
           },
         },
       ],

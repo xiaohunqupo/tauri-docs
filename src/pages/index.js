@@ -52,9 +52,6 @@ function Cards() {
         message:
           "By using the OS's native web renderer, the size of a Tauri app can be less than 600KB.",
       }),
-      link: '/references/benchmarks',
-      isDoc: true,
-      linkText: translate({ message: 'Learn More' }),
       imageUrl: 'img/index/illustrations/box.svg',
     },
     {
@@ -90,12 +87,12 @@ function Cards() {
             <h2>{card.label}</h2>
             <p>{card.description}</p>
             <div className={classNames(styles.cardSpacer)}></div>
-            <Link
+            {card.link && <Link
               className={'button button--primary'}
               href={(card.isDoc ? latestVersion.path : '') + card.link}
             >
               {card.linkText}
-            </Link>
+            </Link>}
           </div>
           <div className={classNames(styles.cardSide, styles.cardImage)}>
             <img src={card.imageUrl} />
@@ -273,10 +270,37 @@ function FeatureRoadmapEntry(props) {
   )
 }
 
+function OfficialPartners() {
+  // All logos should be a svg with a 500x100 frame (content resized inside
+  // with padding to appear balanced).
+  const items = [
+    {
+      name: 'CrabNebula',
+      link: 'https://www.crabnebula.dev',
+      logoColorDark: 'crabnebula_color_dark.svg',
+      logoColorLight: 'crabnebula_color_light.svg',
+    },
+  ]
+
+  return (
+    <div className={styles.row}>
+      {items.map((item, index) => {
+        return <Logo className={styles.partner} brand={item} key={index} />
+      })}
+    </div>
+  )
+}
+
 function PremiumSponsors() {
   // All logos should be a svg with a 500x100 frame (content resized inside
   // with padding to appear balanced).
   const items = [
+    {
+      name: 'AWS',
+      link: 'https://aws.amazon.com',
+      logoColorDark: 'AWS_color_dark.svg',
+      logoColorLight: 'AWS_color_light.svg',
+    },
     {
       name: '1Password',
       link: 'https://1password.com',
@@ -312,7 +336,7 @@ function PremiumSponsors() {
   return (
     <div className={styles.row}>
       {items.map((item, index) => {
-        return <Logo classNames={styles.sponsor} brand={item} key={index} />
+        return <Logo className={styles.premium} brand={item} key={index} />
       })}
     </div>
   )
@@ -359,18 +383,6 @@ function Sponsors() {
       logoColorLight: 'leniolabs_color_light.svg',
     },
     {
-      name: 'Meros',
-      link: 'https://meroscrypto.io',
-      logoColorDark: 'meros_color_dark.svg',
-      logoColorLight: 'meros_color_light.svg',
-    },
-    {
-      name: 'Tensor Programming',
-      link: 'https://www.youtube.com/c/tensorprogramming',
-      logoColorDark: 'tensor_color_dark.svg',
-      logoColorLight: 'tensor_color_light.svg',
-    },
-    {
       name: 'VPS Server',
       link: 'https://www.vpsserver.com',
       logoColorDark: 'vps_server_color_dark.svg',
@@ -382,12 +394,18 @@ function Sponsors() {
       logoColorDark: 'dimension_color_dark.svg',
       logoColorLight: 'dimension_color_light.svg',
     },
+    {
+      name: 'Lightfinder',
+      link: 'https://lightfinder.com/',
+      logoColorDark: 'lightfinder_color_dark.svg',
+      logoColorLight: 'lightfinder_color_light.svg',
+    },
   ]
 
   return (
     <div className={styles.row}>
       {items.map((item, index) => {
-        return <Logo classNames={styles.sponsor} brand={item} key={index} />
+        return <Logo className={styles.sponsor} brand={item} key={index} />
       })}
     </div>
   )
@@ -416,7 +434,7 @@ function Logo(props) {
   }, [])
 
   return (
-    <Link href={props.brand.link} className={styles.sponsor}>
+    <Link href={props.brand.link} className={props.className}>
       <img
         src={useBaseUrl(
           logoDir +
@@ -445,7 +463,7 @@ function DynamicHeaderImage() {
     images.push(lightTauriLogo)
   }, [])
 
-  // // Set dark mode correctly
+  // Set dark mode correctly
   useEffect(() => {
     setIsDarkMode(colorMode === 'dark')
   }, [colorMode])
@@ -474,25 +492,11 @@ export default function App() {
       })}
     >
       <header className={classNames('hero', styles.hero)}>
-        <div className={classNames(styles.heroBefore)}>
-          <div className={classNames(styles.loopsContainer)}>
-            <img
-              className={classNames(styles.heroLoops)}
-              src="/img/index/blue_loops.svg"
-            />
-          </div>
-          <img
-            className={classNames(styles.heroPackage)}
-            src="/img/index/orange_package.svg"
-          />
-        </div>
         <div className={classNames(styles.heroContainer)}>
-          <p className={classNames(styles.heroSubtitle, 'hero__subtitle')}>
-            <Translate>Announcing the release of</Translate>
-          </p>
           <span className={classNames(styles.heroImage)}>
             <DynamicHeaderImage />
           </span>
+          <br />
           <div className={classNames(styles.heroSubtitle, 'hero__subtitle')}>
             <Translate>
               Build an optimized, secure, and frontend-independent application
@@ -510,18 +514,6 @@ export default function App() {
           >
             <Translate>Quick Start</Translate>
           </Link>
-        </div>
-        <div className={classNames(styles.heroAfter)}>
-          <img
-            className={classNames(styles.heroPackage)}
-            src="/img/index/blue_package.svg"
-          />
-          <div className={classNames(styles.loopsContainer)}>
-            <img
-              className={classNames(styles.heroLoops)}
-              src="/img/index/orange_loops.svg"
-            />
-          </div>
         </div>
       </header>
 
@@ -551,6 +543,12 @@ export default function App() {
         <div className={styles.spacer} />
         <div className="container">
           <section id="sponsors">
+            <h1 className={styles.h1}>Official Partners</h1>
+            <OfficialPartners />
+          </section>
+
+          <div className={styles.spacer} />
+          <section>
             <h1 className={styles.h1}>Premium Sponsors</h1>
             <PremiumSponsors />
           </section>

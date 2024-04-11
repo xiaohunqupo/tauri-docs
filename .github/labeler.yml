@@ -1,0 +1,4 @@
+# See https://github.com/actions/labeler
+
+i18n:
+  - src/content/docs/fr/**/*

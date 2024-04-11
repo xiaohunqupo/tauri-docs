@@ -1,7 +1,7 @@
 ---
 description: Build a Tauri app using SvelteKit as the frontend build tool
 pagination_next: guides/development/development-cycle
-sidebar_position: 3
+sidebar_position: 4
 sidebar_custom_props:
   doc_card_image: /img/guides/getting-started/setup/svelte.svg
 ---
@@ -21,13 +21,13 @@ This guide will walk you through creating your first Tauri app using the [Svelte
 
 Here's a preview of what we will be building:
 
-![Application Preview](./assets/sveltekit/result.png)
+![Application Preview](/img/guides/getting-started/setup/sveltekit/result.png)
 
 ## Create the Frontend
 
-[SvelteKit] is a Svelte Frontend which is primarily designed for Server-Side Rendering (SSR). To make SvelteKit work with Tauri we are going to disable SSR and use [`@sveltejs/adapter-static`] to create a frontend based on Static-Site Generation (SSG).
+[SvelteKit] is a Svelte Frontend that is primarily designed for Server-Side Rendering (SSR). To make SvelteKit work with Tauri we are going to disable SSR and use [`@sveltejs/adapter-static`] to create a frontend based on Static-Site Generation (SSG).
 
-SvelteKit comes with a scaffolding utility similar to [`create-tauri-app`] that can quickly setup a new project with many customization options. For this guide, we will select the [TypeScript] template, with ESLint and Prettier enabled.
+SvelteKit comes with a scaffolding utility similar to [`create-tauri-app`] that can quickly set up a new project with many customization options. For this guide, we will select the [TypeScript] template, with ESLint and Prettier enabled.
 
 <Tabs groupId="package-manager">
   <TabItem value="npm">
@@ -50,6 +50,13 @@ yarn create svelte
 
 ```shell
 pnpm create svelte
+```
+
+  </TabItem>
+  <TabItem value="Bun">
+
+```shell
+bunx create-svelte
 ```
 
   </TabItem>
@@ -80,7 +87,7 @@ First, we need to install [`@sveltejs/adapter-static`]:
   <TabItem value="npm">
 
 ```shell
-npm install --save-dev @sveltejs/adapter-static@next
+npm install --save-dev @sveltejs/adapter-static
 ```
 
   </TabItem>
@@ -88,7 +95,7 @@ npm install --save-dev @sveltejs/adapter-static@next
   <TabItem value="Yarn">
 
 ```shell
-yarn add -D @sveltejs/adapter-static@next
+yarn add -D @sveltejs/adapter-static
 ```
 
   </TabItem>
@@ -96,7 +103,14 @@ yarn add -D @sveltejs/adapter-static@next
   <TabItem value="pnpm">
 
 ```shell
-pnpm add -D @sveltejs/adapter-static@next
+pnpm add -D @sveltejs/adapter-static
+```
+
+  </TabItem>
+  <TabItem value="Bun">
+
+```shell
+bun add --dev @sveltejs/adapter-static
 ```
 
   </TabItem>
@@ -107,13 +121,13 @@ Then update the `adapter` import in the `svelte.config.js` file:
 ```javascript title=svelte.config.js
 // highlight-next-line
 import adapter from '@sveltejs/adapter-static' // This was changed from adapter-auto
-import preprocess from 'svelte-preprocess'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Consult https://github.com/sveltejs/svelte-preprocess
+  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
-  preprocess: preprocess(),
+  preprocess: vitePreprocess(),
 
   kit: {
     adapter: adapter(),
@@ -130,7 +144,7 @@ export const prerender = true
 export const ssr = false
 ```
 
-Note that static-adapter doesn't require you to disable SSR for the whole app but it makes it possible to use APIs which depend on the global `window` object (like Tauri's API) without [Client-side checks].
+Note that static-adapter doesn't require you to disable SSR for the whole app but it makes it possible to use APIs that depend on the global `window` object (like Tauri's API) without [Client-side checks].
 
 Furthermore, if you prefer a Single-Page Application (SPA) mode over SSG, you can change the adapter configurations and `+layout.ts` according to the [adapter docs].
 
@@ -145,11 +159,11 @@ Furthermore, if you prefer a Single-Page Application (SPA) mode over SSG, you ca
   }}
   beforeDevCommandExplination={{
     __html:
-      'Use <code>npm run dev</code> (be sure to adapt to use your package manager of choice).',
+      'Use <code>npm run dev</code> (make sure to adapt this to use the package manager of your choice).',
   }}
   beforeBuildCommandExplination={{
     __html:
-      'Use <code>npm run build</code> (be sure to adapt to use your package manager of choice).',
+      'Use <code>npm run build</code> (make sure to adapt this to use the package manager of your choice).',
   }}
 />
 
@@ -171,7 +185,7 @@ And that's it! Now you can run the following command in your terminal to start a
 
 <Command name="dev" />
 
-![Application Window](./assets/sveltekit/init.png)
+![Application Window](/img/guides/getting-started/setup/sveltekit/init.png)
 
 ## Invoke Commands
 
@@ -213,9 +227,9 @@ You can now add this component into `src/routes/+page.svelte`:
 <Greet />
 ```
 
-You can now run this with `npm run dev` and see the result:
+You can now run this with `npm run tauri dev` and see the result:
 
-![Application Preview](./assets/sveltekit/result.png)
+![Application Preview](/img/guides/getting-started/setup/sveltekit/result.png)
 
 :::tip
 

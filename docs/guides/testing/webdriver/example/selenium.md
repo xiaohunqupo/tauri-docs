@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
@@ -53,7 +57,7 @@ If you want to install the dependencies from scratch, just run the following com
 <Tabs groupId="package-manager"
 defaultValue="yarn"
 values={[
-{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'},
+{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'}, {label: 'Bun', value: 'bun'},
 ]}>
 <TabItem value="npm">
 
@@ -70,6 +74,13 @@ yarn add mocha chai selenium-webdriver
 ```
 
 </TabItem>
+<TabItem value="Bun">
+
+```shell
+bun add mocha chai selenium-webdriver
+```
+
+</TabItem>
 </Tabs>
 
 I suggest also adding a `"test": "mocha"` item in the `package.json` `"scripts"` key so that running Mocha can be called
@@ -78,7 +89,7 @@ simply with
 <Tabs groupId="package-manager"
 defaultValue="yarn"
 values={[
-{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'},
+{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'}, {label: 'Bun', value: 'bun'},
 ]}>
 <TabItem value="npm">
 
@@ -92,6 +103,13 @@ npm test
 
 ```shell
 yarn test
+```
+
+</TabItem>
+<TabItem value="Bun">
+
+```shell
+bun run test
 ```
 
 </TabItem>
@@ -152,7 +170,7 @@ before(async function () {
   // start the webdriver client
   driver = await new Builder()
     .withCapabilities(capabilities)
-    .usingServer('http://localhost:4444/')
+    .usingServer('http://127.0.0.1:4444/')
     .build()
 })
 
@@ -191,7 +209,7 @@ describe('Hello Tauri', () => {
 ```
 
 If you are familiar with JS testing frameworks, `describe`, `it`, and `expect` should look familiar. We also have
-semi-complex `before()` and `after()` callbacks to setup and teardown mocha. Lines that are not the tests themselves
+semi-complex `before()` and `after()` callbacks to set up and teardown mocha. Lines that are not the tests themselves
 have comments explaining the setup and teardown code. If you were familiar with the Spec file from the
 [WebdriverIO example](webdriverio#spec), you notice a lot more code that isn't tests, as we have to set up a few
 more WebDriver related items.
@@ -203,7 +221,7 @@ Now that we are all set up with our dependencies and our test script, let's run 
 <Tabs groupId="package-manager"
 defaultValue="yarn"
 values={[
-{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'},
+{label: 'npm', value: 'npm'}, {label: 'Yarn', value: 'yarn'}, {label: 'Bun', value: 'bun'},
 ]}>
 <TabItem value="npm">
 
@@ -217,6 +235,13 @@ npm test
 
 ```shell
 yarn test
+```
+
+</TabItem>
+<TabItem value="Bun">
+
+```shell
+bun run test
 ```
 
 </TabItem>
@@ -241,7 +266,7 @@ $ Mocha
 Done in 0.93s.
 ```
 
-We can see that our `Hello Tauri` sweet we created with `decribe` had all 3 items we created with `it` pass their
+We can see that our `Hello Tauri` test suite we created with `describe` had all 3 items we created with `it` pass their
 tests!
 
 With [Selenium] and some hooking up to a test suite, we just enabled e2e testing without modifying our Tauri

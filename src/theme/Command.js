@@ -8,15 +8,19 @@ const types = [
   { value: 'npm', content: 'npm run tauri ' },
   { value: 'Yarn', content: 'yarn tauri ' },
   { value: 'pnpm', content: 'pnpm tauri ' },
+  { value: 'bun', content: 'bunx tauri ' },
   { value: 'Cargo', content: 'cargo tauri ' },
 ]
 
 function insertDashDashBeforeOption(value, name) {
-  const idx = name.indexOf('--')
+  let idx = name.indexOf(' --')
+  if (idx === -1) {
+    idx = name.indexOf(' -')
+  }
   if (idx === -1) {
     return value + name
   }
-  return value + name.slice(0, idx) + '-- ' + name.slice(idx)
+  return value + name.slice(0, idx + 1) + '--' + name.slice(idx)
 }
 
 export const CreateTauriApp = () => {
@@ -29,18 +33,18 @@ export const CreateTauriApp = () => {
       </TabItem>
       <TabItem value="PowerShell">
         <CodeBlock className="language-shell" language="powershell">
-          iwr -useb https://create.tauri.app/ps | iex
+          irm https://create.tauri.app/ps | iex
         </CodeBlock>
       </TabItem>
       <TabItem value="Cargo">
         <CodeBlock className="language-shell" language="shell">
-          {`cargo install create-tauri-app
+          {`cargo install create-tauri-app --locked
 cargo create-tauri-app`}
         </CodeBlock>
       </TabItem>
       <TabItem value="npm">
         <CodeBlock className="language-shell" language="shell">
-          npm create tauri-app
+          npm create tauri-app@latest
         </CodeBlock>
       </TabItem>
       <TabItem value="Yarn">
@@ -51,6 +55,11 @@ cargo create-tauri-app`}
       <TabItem value="pnpm">
         <CodeBlock className="language-shell" language="shell">
           pnpm create tauri-app
+        </CodeBlock>
+      </TabItem>
+      <TabItem value="Bun">
+        <CodeBlock className="language-shell" language="shell">
+          bunx create-tauri-app
         </CodeBlock>
       </TabItem>
     </Tabs>
@@ -88,6 +97,11 @@ export const InstallTauriCli = () => {
           pnpm add -D @tauri-apps/cli
         </CodeBlock>
       </TabItem>
+      <TabItem value="Bun">
+        <CodeBlock className="language-shell" language="shell">
+          bun add -D @tauri-apps/cli
+        </CodeBlock>
+      </TabItem>
       <TabItem value="Cargo">
         <CodeBlock className="language-shell" language="shell">
           cargo install tauri-cli
@@ -113,6 +127,11 @@ export const InstallTauriApi = () => {
       <TabItem value="pnpm">
         <CodeBlock className="language-shell" language="shell">
           pnpm add @tauri-apps/api
+        </CodeBlock>
+      </TabItem>
+      <TabItem value="Bun">
+        <CodeBlock className="language-shell" language="shell">
+          bun add @tauri-apps/api
         </CodeBlock>
       </TabItem>
     </Tabs>
